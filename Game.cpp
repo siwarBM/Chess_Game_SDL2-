@@ -79,7 +79,7 @@ Game::Game(sdl_handler* handler)
 
     for (int i = 2; i < 6; i++)
     {
-        for (int j = 0; j < 8; j++)
+        for (int j = 0; j < m_handler->PIECE_NUMBER; j++)
         {
             m_field[j][i] = NULL;
         }
@@ -213,7 +213,8 @@ void Game::exchange(int xStart, int yStart, int xEnd, int yEnd)
         team = Piece::BLACK;
     }
 
-    SDL_SetRenderDrawColor(m_handler->m_renderer, 155, 103, 60, 255);
+    //SDL_SetRenderDrawColor(m_handler->m_renderer, 155, 103, 60, 255);
+    SDL_SetRenderDrawColor(m_handler->m_renderer, 0, 255, 0, 255);
     SDL_Rect rectangle = {0,
                           y_draw,
                           m_handler->SCREEN_WIDTH / 4,
@@ -227,7 +228,8 @@ void Game::exchange(int xStart, int yStart, int xEnd, int yEnd)
     SDL_RenderFillRect(m_handler->m_renderer, &rectangle);
     m_handler->DrawRectangle(src, rectangle, text_knight);
 
-    SDL_SetRenderDrawColor(m_handler->m_renderer, 155, 103, 60, 255);
+    //SDL_SetRenderDrawColor(m_handler->m_renderer, 155, 103, 60, 255);
+    SDL_SetRenderDrawColor(m_handler->m_renderer, 0, 255, 0, 255);
     rectangle.x = 2 * m_handler->SCREEN_WIDTH / 4;
     SDL_RenderFillRect(m_handler->m_renderer, &rectangle);
     m_handler->DrawRectangle(src, rectangle, text_bishop);
@@ -293,9 +295,9 @@ void Game::exchange(int xStart, int yStart, int xEnd, int yEnd)
     m_handler->undoPieceRender(xStart, yStart);
     m_handler->renderBackground();
     
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < m_handler->PIECE_NUMBER; i++)
     {
-        for (int j = 0; j < 8; j++)
+        for (int j = 0; j < m_handler->PIECE_NUMBER; j++)
         {
             if (m_field[i][j] != NULL)
             {
@@ -357,9 +359,9 @@ void Game::gameState()
     }
 
     pivot->setCheck(m_field, kl1->getPos().first, kl1->getPos().second);
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < m_handler->PIECE_NUMBER; i++)
     {
-        for (int j = 0; j < 8; j++)
+        for (int j = 0; j < m_handler->PIECE_NUMBER; j++)
         {
             if (m_field[i][j] != NULL)
             {
@@ -415,9 +417,9 @@ void Game::gameState()
 
 void Game::disableEnPassant()
 {
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < m_handler->PIECE_NUMBER; i++)
     {
-        for (int j = 0; j < 8; j++)
+        for (int j = 0; j < m_handler->PIECE_NUMBER; j++)
         {
             if (m_field[i][j] != NULL)
             {
@@ -444,21 +446,21 @@ void Game::renderPossibleMoves(Piece* piece)
     for (const Piece::PossibleMove& value : possible) {
         if ((value.xCoord % 2 == 0 && value.yCoord % 2 == 1) || (value.xCoord % 2 == 1 && value.yCoord % 2 == 0))
         {
-            SDL_SetRenderDrawColor(m_handler->m_renderer, 0, 134, 139, 255);
+            SDL_SetRenderDrawColor(m_handler->m_renderer, 164, 211, 238, 255);
         }
         else
         {
             SDL_SetRenderDrawColor(m_handler->m_renderer, 164, 211, 238, 255);
         }
-        rectangle = { value.xCoord * m_handler->SCREEN_WIDTH / 8,
-                      value.yCoord* m_handler->SCREEN_HEIGHT / 8,
-                      m_handler->SCREEN_WIDTH / 8,
-                      m_handler->SCREEN_HEIGHT / 8 };
+        rectangle = { value.xCoord * m_handler->SCREEN_WIDTH / m_handler->PIECE_NUMBER,
+                      value.yCoord* m_handler->SCREEN_HEIGHT / m_handler->PIECE_NUMBER,
+                      m_handler->SCREEN_WIDTH / m_handler->PIECE_NUMBER,
+                      m_handler->SCREEN_HEIGHT / m_handler->PIECE_NUMBER };
         SDL_RenderFillRect(m_handler->m_renderer, &rectangle);
 
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < m_handler->PIECE_NUMBER; i++)
         {
-            for (int j = 0; j < 8; j++)
+            for (int j = 0; j < m_handler->PIECE_NUMBER; j++)
             {
                 if (m_field[i][j] != NULL)
                 {
@@ -475,21 +477,23 @@ void Game::undoRenderPossibleMoves(Piece* piece)
     for (const Piece::PossibleMove& value : possible) {
         if ((value.xCoord % 2 == 0 && value.yCoord % 2 == 1) || (value.xCoord % 2 == 1 && value.yCoord % 2 == 0))
         {
-            SDL_SetRenderDrawColor(m_handler->m_renderer, 155, 103, 60, 255);
+            //SDL_SetRenderDrawColor(m_handler->m_renderer, 155, 103, 60, 255);
+            // Green Color.
+            SDL_SetRenderDrawColor(m_handler->m_renderer, 0, 255, 0, 255);
         }
         else
         {
             SDL_SetRenderDrawColor(m_handler->m_renderer, 255, 255, 255, 255);
         }
-        SDL_Rect rectangle = { value.xCoord * m_handler->SCREEN_WIDTH / 8,
-                                  value.yCoord* m_handler->SCREEN_HEIGHT / 8,
-                                  m_handler->SCREEN_WIDTH / 8,
-                                  m_handler->SCREEN_HEIGHT / 8 };
+        SDL_Rect rectangle = { value.xCoord * m_handler->SCREEN_WIDTH / m_handler->PIECE_NUMBER,
+                                  value.yCoord* m_handler->SCREEN_HEIGHT / m_handler->PIECE_NUMBER,
+                                  m_handler->SCREEN_WIDTH / m_handler->PIECE_NUMBER,
+                                  m_handler->SCREEN_HEIGHT / m_handler->PIECE_NUMBER };
         SDL_RenderFillRect(m_handler->m_renderer, &rectangle);
 
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < m_handler->PIECE_NUMBER; i++)
         {
-            for (int j = 0; j < 8; j++)
+            for (int j = 0; j < m_handler->PIECE_NUMBER; j++)
             {
                 if (m_field[i][j] != NULL)
                 {
@@ -502,9 +506,9 @@ void Game::undoRenderPossibleMoves(Piece* piece)
 
 void Game::calcAllMoves()
 {
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i <m_handler->PIECE_NUMBER; i++)
     {
-        for (int j = 0; j < 8; j++)
+        for (int j = 0; j < m_handler->PIECE_NUMBER; j++)
         {
             if (m_field[i][j] != nullptr)
             {

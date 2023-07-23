@@ -8,7 +8,7 @@
 #include <memory>
 
 void mainloop::run()
-{  std::cout << "start run dunction" <<std::endl;
+{
 	sdl_handler* handler = new sdl_handler();
 	handler->init();
 
@@ -28,7 +28,6 @@ void mainloop::run()
 	{
 		while (SDL_WaitEvent(&handler->m_event)) // Check the role of SDL_WaitEvent"ént here added by me.
 		{
-
             switch (handler->m_event.type)
             {
             case SDL_QUIT:/* constant-expression */{
@@ -39,8 +38,8 @@ void mainloop::run()
             }
             case SDL_MOUSEBUTTONDOWN:
             {
-                xStart = handler->m_event.button.x / 80;
-				yStart = handler->m_event.button.y / 80;
+                xStart = handler->m_event.button.x / handler->CELL_WIDTH;
+				yStart = handler->m_event.button.y / handler->CELL_WIDTH;
 				clickedOn = game->getFieldPos(xStart, yStart);
 				if (clickedOn != NULL)
 				{
@@ -62,8 +61,8 @@ void mainloop::run()
 						game->undoRenderPossibleMoves(clickedOn);
 					}
 				}
-				xEnd = handler->m_event.button.x / 80;
-				yEnd = handler->m_event.button.y / 80;
+				xEnd = handler->m_event.button.x / handler->CELL_WIDTH;
+				yEnd = handler->m_event.button.y / handler->CELL_WIDTH;
 				if (clickedOn != NULL)
 				{
 					if ((xStart != -1 && yStart != -1 && xEnd != -1 && yEnd != -1)

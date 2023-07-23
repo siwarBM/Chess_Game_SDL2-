@@ -13,8 +13,10 @@ private:
 public:
     sdl_handler(/* args */);
     	// Screen size
-	const int SCREEN_WIDTH = 640;
-	const int SCREEN_HEIGHT = 640;
+	const int SCREEN_WIDTH = 480;
+	const int SCREEN_HEIGHT = 480;
+	const int CELL_WIDTH = SCREEN_WIDTH / 8;
+	const int PIECE_NUMBER = 8;
 
 	// window we'll be rendering to
 	SDL_Window* m_window;

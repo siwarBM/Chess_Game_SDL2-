@@ -5,7 +5,7 @@
 #include <iostream>
 int main(int argc, char* args[])
 {
-	std::cout << "call main function"<<std::endl;
+	std::cout << "Launching the Chess Application! best of luck"<<std::endl;
 	mainloop::run();
 	return 0;
 }

@@ -9,9 +9,9 @@ void sdl_handler::renderBackground()
 	bool white = true;
 	SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
 
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < PIECE_NUMBER; i++)
 	{
-		for (int j = 0; j < 8; j++)
+		for (int j = 0; j < PIECE_NUMBER; j++)
 		{
 			if (white)
 			{
@@ -19,13 +19,15 @@ void sdl_handler::renderBackground()
 			}
 			else
 			{
-				SDL_SetRenderDrawColor(m_renderer, 155, 103, 60, 255);
+				/*SDL_SetRenderDrawColor(m_renderer, 155, 103, 60, 255);*/
+				SDL_SetRenderDrawColor(m_renderer, 0, 255, 0, 255);
+
 			}
 			white = !white;
-			SDL_Rect rectangle = { i * SCREEN_WIDTH / 8,
-								  j * SCREEN_HEIGHT / 8,
-								  SCREEN_WIDTH / 8,
-								  SCREEN_HEIGHT / 8 };
+			SDL_Rect rectangle = { i * SCREEN_WIDTH / PIECE_NUMBER,
+								  j * SCREEN_HEIGHT / PIECE_NUMBER,
+								  SCREEN_WIDTH / PIECE_NUMBER,
+								  SCREEN_HEIGHT / PIECE_NUMBER };
 			SDL_RenderFillRect(m_renderer, &rectangle);
 		}
 		white = !white;
@@ -56,12 +58,13 @@ void sdl_handler::undoPieceRender(int x, int y)
 	}
 	else
 	{
-		SDL_SetRenderDrawColor(m_renderer, 155, 103, 60, 255);
+		//SDL_SetRenderDrawColor(m_renderer, 155, 103, 60, 255);
+		SDL_SetRenderDrawColor(m_renderer, 0, 255, 0, 255);
 	}
-	SDL_Rect rectangle = { x * SCREEN_WIDTH / 8,
-						  y * SCREEN_HEIGHT / 8,
-						  SCREEN_WIDTH / 8,
-						  SCREEN_HEIGHT / 8 };
+	SDL_Rect rectangle = { x * SCREEN_WIDTH / PIECE_NUMBER,
+						  y * SCREEN_HEIGHT / PIECE_NUMBER,
+						  SCREEN_WIDTH / PIECE_NUMBER,
+						  SCREEN_HEIGHT / PIECE_NUMBER };
 	SDL_RenderFillRect(m_renderer, &rectangle);
 }
 

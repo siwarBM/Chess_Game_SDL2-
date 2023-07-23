@@ -2,6 +2,7 @@
 #include "King.h"
 #include <string>
 #include <iostream>
+#include <assert.h>
 
 using namespace std;
 
@@ -54,9 +55,9 @@ std::vector<Piece::PossibleMove> Piece::pushMove(std::vector<PossibleMove> moveL
 
 King* Piece::getOwnKing(Piece* field[8][8])
 {
-	for  (int i = 0; i < 8; i++)
+	for  (int i = 0; i < m_handler->PIECE_NUMBER; i++)
 	{
-		for (int j = 0; j < 8; j++)
+		for (int j = 0; j < m_handler->PIECE_NUMBER; j++)
 		{
 			if (field[i][j] != NULL)
 			{
@@ -94,16 +95,11 @@ void Piece::render()
 	SDL_Rect src = {0, 0, 60, 60};
 	if (m_handler == NULL)
 	{
-		sayMyName();
+		assert(m_handler != NULL);
 	}
-	SDL_Rect dest = { m_handler->SCREEN_WIDTH / 8 * m_pos.first - 2,
-					  m_handler->SCREEN_HEIGHT / 8 * m_pos.second,
-					  m_handler->SCREEN_WIDTH / 8,
-					  m_handler->SCREEN_HEIGHT / 8 };
+	SDL_Rect dest = { m_handler->SCREEN_WIDTH / m_handler->PIECE_NUMBER * m_pos.first - 2,
+					  m_handler->SCREEN_HEIGHT / m_handler->PIECE_NUMBER * m_pos.second,
+					  m_handler->SCREEN_WIDTH / m_handler->PIECE_NUMBER,
+					  m_handler->SCREEN_HEIGHT / m_handler->PIECE_NUMBER };
 	m_handler->DrawRectangle(src, dest, m_texture);
-}
-
-void Piece::sayMyName()
-{
-	std::cout << "No Piece here" << std::endl;
 }
