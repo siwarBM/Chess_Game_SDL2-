@@ -82,18 +82,9 @@ void King::calcPossibleMoves(Piece* field[8][8], bool checkCheck)
 					if (field[i][j]->getTeam() == m_team && field[i][j]->getType() == ROOK && !field[i][j]->m_hasMoved)
 					{
 						int a, b, c;
-						if (i == 0)
-						{
-							a = 1;
-							b = 2;
-							c = 3;
-						}
-						else
-						{
-							a = 5;
-							b = 6;
-							c = 6;
-						}
+						a = ( i==0 ) ? 1 : 5;
+						b = ( i==0 ) ? 2 : 6;
+						c = ( i==0 ) ? 3 : 6;
 						if (field[a][j] == NULL && field[b][j] == NULL && field[c][j] == NULL)
 						{
 							for (int k = 0; k < 8; k++)
@@ -167,14 +158,7 @@ void King::setCheck(Piece* field[8][8], int x, int y)
 					else if (field[i][j]->getType() == PAWN)
 					{
 						int dy_pawn;
-						if (field[i][j]->getTeam() == WHITE)
-						{
-							dy_pawn = 1;
-						}
-						else
-						{
-							dy_pawn = -1;
-						}
+						dy_pawn = (field[i][j]->getTeam() == WHITE) ? 1 : -1;
 						if ((x == field[i][j]->getPos().first + 1 || x == field[i][j]->getPos().first - 1) && y == field[i][j]->getPos().second + dy_pawn)
 						{
 							check = true;

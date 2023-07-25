@@ -477,7 +477,6 @@ void Game::undoRenderPossibleMoves(Piece* piece)
     for (const Piece::PossibleMove& value : possible) {
         if ((value.xCoord % 2 == 0 && value.yCoord % 2 == 1) || (value.xCoord % 2 == 1 && value.yCoord % 2 == 0))
         {
-            //SDL_SetRenderDrawColor(m_handler->m_renderer, 155, 103, 60, 255);
             // Green Color.
             SDL_SetRenderDrawColor(m_handler->m_renderer, 0, 255, 0, 255);
         }

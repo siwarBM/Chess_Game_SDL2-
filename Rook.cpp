@@ -4,15 +4,7 @@
 Rook::Rook(Team team, std::pair<int, int> pos, sdl_handler* handler)
 	:Piece(team, pos, handler, ROOK)
 {
-	std::string filename;
-	if (team == BLACK)
-	{
-		filename = "res/Chess_rdt60.png";
-	}
-	else
-	{
-		filename = "res/Chess_rlt60.png";
-	}
+	std::string filename = (team == BLACK) ? "res/Chess_rdt60.png" : "res/Chess_rlt60.png";
 	m_handler = handler;
 	m_texture = handler->loadImage(filename);
 
@@ -21,14 +13,8 @@ Rook::Rook(Team team, std::pair<int, int> pos, sdl_handler* handler)
 
 void Rook::sayMyName()
 {
-	if (m_team == BLACK)
-	{
-		std::cout << "BLACK ROOK" << std::endl;
-	}
-	else
-	{
-		std::cout << "WHITE ROOK" << std::endl;
-	}
+	std::string msg = (m_team == BLACK) ? "BLACK ROOK" : "WHITE ROOK";
+	std::cout << msg << std::endl;
 }
 
 void Rook::calcPossibleMoves(Piece* field[8][8], bool checkCheck)

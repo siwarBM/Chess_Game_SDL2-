@@ -7,39 +7,19 @@ Pawn::Pawn(Team team, std::pair<int, int> pos, sdl_handler* handler)
 	:Piece(team, pos, handler, PAWN), m_enPassant(std::pair<bool, int>(false, 0))
 {
 	std::string filename;
-	if (team == BLACK)
-	{
-		filename = "res/Chess_pdt60.png";
-	}
-	else
-	{
-		filename = "res/Chess_plt60.png";
-	}
+	filename = (team == BLACK) ? "res/Chess_pdt60.png" : "res/Chess_plt60.png";
 	m_handler = handler;
 	m_texture = handler->loadImage(filename);
 
-	if (team == BLACK)
-	{
-		m_dy = -1;
-	}
-	else
-	{
-		m_dy = 1;
-	}
+	m_dy = (team == BLACK) ? -1 : 1;
 
 	render();
 }
 
 void Pawn::sayMyName()
 {
-	if (m_team == BLACK)
-	{
-		std::cout << "BLACK PAWN" << std::endl;
-	}
-	else
-	{
-		std::cout << "WHITE PAWN" << std::endl;
-	}
+	std::string msg = (m_team == BLACK) ? "BLACK PAWN" : "WHITE PAWN";
+
 }
 
 void Pawn::calcPossibleMoves(Piece* field[8][8], bool checkCheck)

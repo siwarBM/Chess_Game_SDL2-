@@ -5,14 +5,7 @@ Knight::Knight(Team team, std::pair<int, int> pos, sdl_handler* handler)
 	:Piece(team, pos, handler, KNIGHT)
 {
 	std::string filename;
-	if (team == BLACK)
-	{
-		filename = "res/Chess_ndt60.png";
-	}
-	else
-	{
-		filename = "res/Chess_nlt60.png";
-	}
+	filename = (team == BLACK) ? "res/Chess_ndt60.png" : "res/Chess_nlt60.png";
 	m_handler = handler;
 	m_texture = handler->loadImage(filename);
 	render();
@@ -20,14 +13,9 @@ Knight::Knight(Team team, std::pair<int, int> pos, sdl_handler* handler)
 
 void Knight::sayMyName()
 {
-	if (m_team == BLACK)
-	{
-		std::cout << "BLACK KNIGHT" << std::endl;
-	}
-	else
-	{
-		std::cout << "WHTIE KNIGHT" << std::endl;
-	}
+	std::string msg = (m_team == BLACK) ? "BLACK KNIGHT" : "WHTIE KNIGHT";
+
+	std::cout << msg << std::endl;
 }
 
 void Knight::calcPossibleMoves(Piece* field[8][8], bool checkCheck)

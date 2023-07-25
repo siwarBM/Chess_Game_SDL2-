@@ -4,14 +4,8 @@
 Bishop::Bishop(Team team, std::pair<int, int> pos, sdl_handler* handler) : Piece(team, pos, handler, BISHOP)
 {
 	std::string filename;
-	if (team == BLACK)
-	{
-		filename = "res/Chess_bdt60.png";
-	}
-	else
-	{
-		filename = "res/Chess_blt60.png";
-	}
+
+	filename = (team == BLACK ) ? "res/Chess_bdt60.png" : "res/Chess_blt60.png";
 	m_handler = handler;
 	m_texture = handler->loadImage(filename);
 	render();
@@ -19,14 +13,9 @@ Bishop::Bishop(Team team, std::pair<int, int> pos, sdl_handler* handler) : Piece
 
 void Bishop::sayMyName()
 {
-	if (m_team == BLACK)
-	{
-		std::cout << "BLACK BISHOP" << std::endl;
-	}
-	else
-	{
-		std::cout << "WHTIE BISHOP" << std::endl;
-	}
+	std::string msg = (m_team == BLACK ) ? "BLACK BISHOP" : "WHTIE BISHOP";
+	std::cout << msg << std::endl;
+
 }
 
 struct PossibleMove
@@ -55,22 +44,9 @@ void Bishop::calcPossibleMoves(Piece* field[8][8], bool checkCheck)
 						getOwnKing(field),
 						 field,
 						 checkCheck);
-				if (dx_copy < 0)
-				{
-					dx_copy -= 1;
-				}
-				else
-				{
-					dx_copy += 1;
-				}
-				if (dy_copy < 0)
-				{
-					dy_copy -= 1;
-				}
-				else
-				{
-					dy_copy += 1;
-				}
+				dx_copy = (dx_copy < 0 ) ? dx_copy -= 1 : dx_copy+=1;
+				dy_copy = (dy_copy < 0 ) ? dy_copy -= 1 : dy_copy+=1;
+
 			}
 			if (field[m_pos.first + dx_copy][m_pos.second + dy_copy] != nullptr
 				&& (m_pos.first + dx_copy >= 0 && m_pos.first + dx_copy <= 7 && m_pos.second + dy_copy >= 0 && m_pos.second + dy_copy <= 7))

@@ -4,15 +4,7 @@
 Queen::Queen(Team team, std::pair<int, int> pos, sdl_handler* handler)
 	:Piece(team, pos, handler, QUEEN)
 {
-	std::string filename;
-	if (team == BLACK)
-	{
-		filename = "res/Chess_qdt60.png";
-	}
-	else
-	{
-		filename = "res/Chess_qlt60.png";
-	}
+	std::string filename = (team == BLACK) ? "res/Chess_qdt60.png" : "res/Chess_qlt60.png";
 	m_handler = handler;
 	m_texture = handler->loadImage(filename);
 	render();
@@ -21,14 +13,8 @@ Queen::Queen(Team team, std::pair<int, int> pos, sdl_handler* handler)
 
 void Queen::sayMyName()
 {
-	if (m_team == BLACK)
-	{
-		std::cout << "BLACK QUEEN" << std::endl;
-	}
-	else
-	{
-		std::cout << "WHTIE QUEEN" << std::endl;
-	}
+	std::string msg = (m_team == BLACK) ? "BLACK QUEEN" : "WHTIE QUEEN";
+	std::cout << msg << std::endl;
 }
 
 void Queen::calcPossibleMoves(Piece* field[8][8], bool checkCheck)
