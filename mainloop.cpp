@@ -3,9 +3,23 @@
 #include "mainLoop.h"
 #include "sdl_handler.h"
 #include "Game.h"
+#include "Piece.h"
 #include <iostream>
 
 #include <memory>
+
+bool mainloop::isvalidmove(Piece* clickedOn, Game* game)
+{
+	if (clickedOn != NULL)
+	{
+		if (clickedOn->getTeam() == game->getTurn())
+		{
+			return true;
+
+		}
+	}
+	return false;
+}
 
 void mainloop::run()
 {
@@ -43,7 +57,7 @@ void mainloop::run()
 				clickedOn = game->getFieldPos(xStart, yStart);
 				if (clickedOn != NULL)
 				{
-					if (clickedOn->getTeam() == game->getTurn())
+					if ( isvalidmove(clickedOn,game) )
 					{
 						game->renderPossibleMoves(clickedOn);
 					}
@@ -56,8 +70,9 @@ void mainloop::run()
 
                 if (clickedOn != NULL)
 				{
-					if (clickedOn->getTeam() == game->getTurn())
+					if ( isvalidmove(clickedOn,game) )
 					{
+						// Used to refresh the application.
 						game->undoRenderPossibleMoves(clickedOn);
 					}
 				}
@@ -66,7 +81,7 @@ void mainloop::run()
 				if (clickedOn != NULL)
 				{
 					if ((xStart != -1 && yStart != -1 && xEnd != -1 && yEnd != -1)
-						&& (clickedOn->getTeam() == game->getTurn())
+						&& ( isvalidmove(clickedOn,game) )
 						&& (game->isValidMove(xEnd, yEnd, clickedOn)))
 					{
 						std::vector<Piece::PossibleMove> list = game->getFieldPos(xStart, yStart)->getPossibleMoves();
@@ -79,11 +94,6 @@ void mainloop::run()
                                 move.xCoord = xEnd;
                                 move.yCoord = yEnd;
                                 move.moveType = value.moveType;
-
-                                // Create a vector and add the PossibleMove object
-                                //std::vector<Piece::PossibleMove> p1 = {move};
-								//std::vector<Piece::PossibleMove> p1 ={xEnd,yEnd,value.moveType};
-								//{xEnd, yEnd, value.moveType};
 								game->move(clickedOn, move);
 
 							}
@@ -104,5 +114,4 @@ void mainloop::run()
 	}
     delete handler;
 	delete game;
-	//handler->cleanUp();
 }

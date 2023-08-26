@@ -46,39 +46,55 @@ private:
     // checks current game state, determines winner or remis
     void gameState();
 
+    void RenderPieces();
+
     // every single piece
-    Pawn* pl1;
-    Pawn* pl2;
-    Pawn* pl3;
-    Pawn* pl4;
-    Pawn* pl5;
-    Pawn* pl6;
-    Pawn* pl7;
-    Pawn* pl8;
-    Pawn* pb1;
-    Pawn* pb2;
-    Pawn* pb3;
-    Pawn* pb4;
-    Pawn* pb5;
-    Pawn* pb6;
-    Pawn* pb7;
-    Pawn* pb8;
-    Rook* rb1;
-    Rook* rb2;
-    Rook* rl1;
-    Rook* rl2;
-    Knight* nb1;
-    Knight* nb2;
-    Knight* nl1;
-    Knight* nl2;
-    Bishop* bb1;
-    Bishop* bb2;
-    Bishop* bl1;
-    Bishop* bl2;
-    King* kb1;
-    King* kl1;
-    Queen* qb1; 
-    Queen* ql1; 
+    Pawn* pawn_w1;
+    Pawn* pawn_w2;
+    Pawn* pawn_w3;
+    Pawn* pawn_w4;
+    Pawn* pawn_w5;
+    Pawn* pawn_w6;
+    Pawn* pawn_w7;
+    Pawn* pawn_w8;
+    Pawn* pawn_b1;
+    Pawn* pawn_b2;
+    Pawn* pawn_b3;
+    Pawn* pawn_b4;
+    Pawn* pawn_b5;
+    Pawn* pawn_b6;
+    Pawn* pawn_b7;
+    Pawn* pawn_b8;
+    Rook* rook_b1;
+    Rook* rook_b2;
+    Rook* rook_w1;
+    Rook* rook_w2;
+    Knight* Knight_b1;
+    Knight* Knight_b2;
+    Knight* Knight_w1;
+    Knight* Knight_w2;
+    Bishop* Bishop_b1;
+    Bishop* Bishop_b2;
+    Bishop* Bishop_w1;
+    Bishop* Bishop_w2;
+    King* King_b1;
+    King* King_w1;
+    Queen* queen_b1; 
+    Queen* queen_w1;
+
+    enum class PieceType {
+    Pawn,
+    Rook,
+    Knight,
+    Bishop,
+    King,
+    Queen
+    };
+
+    enum class PieceColor {
+    BLACK,
+    WHITE
+};
 public:
     // Constructor
 	Game(sdl_handler* handler);
@@ -106,6 +122,10 @@ public:
 
     // calculates all allowed moves of every piece
     void calcAllMoves();
+
+    void initializePieces();
+
+    void initializeBoard();
 
     // light up the possible Moves
     void renderPossibleMoves(Piece* piece);

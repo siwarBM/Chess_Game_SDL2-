@@ -4,9 +4,9 @@
 Queen::Queen(Team team, std::pair<int, int> pos, sdl_handler* handler)
 	:Piece(team, pos, handler, QUEEN)
 {
-	std::string filename = (team == BLACK) ? "res/Chess_qdt60.png" : "res/Chess_qlt60.png";
+	std::string imagename = (team == BLACK) ? "img/Chess_qdt60.png" : "img/Chess_qlt60.png";
 	m_handler = handler;
-	m_texture = handler->loadImage(filename);
+	m_texture = handler->loadImage(imagename);
 	render();
 }
 

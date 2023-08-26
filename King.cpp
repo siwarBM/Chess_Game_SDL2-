@@ -6,17 +6,10 @@
 King::King(Team team, std::pair<int, int> pos, sdl_handler* handler)
 	:Piece(team, pos, handler, KING), m_check(false)
 {
-	std::string filename;
-	if (team == BLACK)
-	{
-		filename = "res/Chess_kdt60.png";
-	}
-	else
-	{
-		filename = "res/Chess_klt60.png";
-	}
+	std::string imagename;
+	imagename = (team == BLACK) ? "img/Chess_kdt60.png" : "img/Chess_klt60.png";
 	m_handler = handler;
-	m_texture = handler->loadImage(filename);
+	m_texture = handler->loadImage(imagename);
 
 	render();
 }

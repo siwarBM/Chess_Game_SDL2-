@@ -2,80 +2,81 @@
 #include <iostream>
 
 Game::Game(sdl_handler* handler)
-       :pl1(new Pawn(Piece::WHITE, std::pair<int, int>(0, 1), handler)),
-        pl2(new Pawn(Piece::WHITE, std::pair<int, int>(1, 1), handler)),
-        pl3(new Pawn(Piece::WHITE, std::pair<int, int>(2, 1), handler)),
-        pl4(new Pawn(Piece::WHITE, std::pair<int, int>(3, 1), handler)),
-        pl5(new Pawn(Piece::WHITE, std::pair<int, int>(4, 1), handler)),
-        pl6(new Pawn(Piece::WHITE, std::pair<int, int>(5, 1), handler)),
-        pl7(new Pawn(Piece::WHITE, std::pair<int, int>(6, 1), handler)),
-        pl8(new Pawn(Piece::WHITE, std::pair<int, int>(7, 1), handler)),
-        pb1(new Pawn(Piece::BLACK, std::pair<int, int>(0, 6), handler)),
-        pb2(new Pawn(Piece::BLACK, std::pair<int, int>(1, 6), handler)),
-        pb3(new Pawn(Piece::BLACK, std::pair<int, int>(2, 6), handler)),
-        pb4(new Pawn(Piece::BLACK, std::pair<int, int>(3, 6), handler)),
-        pb5(new Pawn(Piece::BLACK, std::pair<int, int>(4, 6), handler)),
-        pb6(new Pawn(Piece::BLACK, std::pair<int, int>(5, 6), handler)),
-        pb7(new Pawn(Piece::BLACK, std::pair<int, int>(6, 6), handler)),
-        pb8(new Pawn(Piece::BLACK, std::pair<int, int>(7, 6), handler)),
-        rb1(new Rook(Piece::BLACK, std::pair<int, int>(0, 7), handler)),
-        rb2(new Rook(Piece::BLACK, std::pair<int, int>(7, 7), handler)),
-        rl1(new Rook(Piece::WHITE, std::pair<int, int>(0, 0), handler)),
-        rl2(new Rook(Piece::WHITE, std::pair<int, int>(7, 0), handler)),
-        nb1(new Knight(Piece::BLACK, std::pair<int, int>(1, 7), handler)),
-        nb2(new Knight(Piece::BLACK, std::pair<int, int>(6, 7), handler)),
-        nl1(new Knight(Piece::WHITE, std::pair<int, int>(1, 0), handler)),
-        nl2(new Knight(Piece::WHITE, std::pair<int, int>(6, 0), handler)),
-        bb1(new Bishop(Piece::BLACK, std::pair<int, int>(2, 7), handler)),
-        bb2(new Bishop(Piece::BLACK, std::pair<int, int>(5, 7), handler)),
-        bl1(new Bishop(Piece::WHITE, std::pair<int, int>(2, 0), handler)),
-        bl2(new Bishop(Piece::WHITE, std::pair<int, int>(5, 0), handler)),
-        kb1(new King(Piece::BLACK, std::pair<int, int>(3, 7), handler)),
-        kl1(new King(Piece::WHITE, std::pair<int, int>(3, 0), handler)),
-        qb1(new Queen(Piece::BLACK, std::pair<int, int>(4, 7), handler)),
-        ql1(new Queen(Piece::WHITE, std::pair<int, int>(4, 0), handler)),
+       :pawn_w1(new Pawn(Piece::WHITE, std::pair<int, int>(0, 1), handler)),
+        pawn_w2(new Pawn(Piece::WHITE, std::pair<int, int>(1, 1), handler)),
+        pawn_w3(new Pawn(Piece::WHITE, std::pair<int, int>(2, 1), handler)),
+        pawn_w4(new Pawn(Piece::WHITE, std::pair<int, int>(3, 1), handler)),
+        pawn_w5(new Pawn(Piece::WHITE, std::pair<int, int>(4, 1), handler)),
+        pawn_w6(new Pawn(Piece::WHITE, std::pair<int, int>(5, 1), handler)),
+        pawn_w7(new Pawn(Piece::WHITE, std::pair<int, int>(6, 1), handler)),
+        pawn_w8(new Pawn(Piece::WHITE, std::pair<int, int>(7, 1), handler)),
+        pawn_b1(new Pawn(Piece::BLACK, std::pair<int, int>(0, 6), handler)),
+        pawn_b2(new Pawn(Piece::BLACK, std::pair<int, int>(1, 6), handler)),
+        pawn_b3(new Pawn(Piece::BLACK, std::pair<int, int>(2, 6), handler)),
+        pawn_b4(new Pawn(Piece::BLACK, std::pair<int, int>(3, 6), handler)),
+        pawn_b5(new Pawn(Piece::BLACK, std::pair<int, int>(4, 6), handler)),
+        pawn_b6(new Pawn(Piece::BLACK, std::pair<int, int>(5, 6), handler)),
+        pawn_b7(new Pawn(Piece::BLACK, std::pair<int, int>(6, 6), handler)),
+        pawn_b8(new Pawn(Piece::BLACK, std::pair<int, int>(7, 6), handler)),
+        rook_b1(new Rook(Piece::BLACK, std::pair<int, int>(0, 7), handler)),
+        rook_b2(new Rook(Piece::BLACK, std::pair<int, int>(7, 7), handler)),
+        rook_w1(new Rook(Piece::WHITE, std::pair<int, int>(0, 0), handler)),
+        rook_w2(new Rook(Piece::WHITE, std::pair<int, int>(7, 0), handler)),
+        Knight_b1(new Knight(Piece::BLACK, std::pair<int, int>(1, 7), handler)),
+        Knight_b2(new Knight(Piece::BLACK, std::pair<int, int>(6, 7), handler)),
+        Knight_w1(new Knight(Piece::WHITE, std::pair<int, int>(1, 0), handler)),
+        Knight_w2(new Knight(Piece::WHITE, std::pair<int, int>(6, 0), handler)),
+        Bishop_b1(new Bishop(Piece::BLACK, std::pair<int, int>(2, 7), handler)),
+        Bishop_b2(new Bishop(Piece::BLACK, std::pair<int, int>(5, 7), handler)),
+        Bishop_w1(new Bishop(Piece::WHITE, std::pair<int, int>(2, 0), handler)),
+        Bishop_w2(new Bishop(Piece::WHITE, std::pair<int, int>(5, 0), handler)),
+        King_b1(new King(Piece::BLACK, std::pair<int, int>(3, 7), handler)),
+        King_w1(new King(Piece::WHITE, std::pair<int, int>(3, 0), handler)),
+        queen_b1(new Queen(Piece::BLACK, std::pair<int, int>(4, 7), handler)),
+        queen_w1(new Queen(Piece::WHITE, std::pair<int, int>(4, 0), handler)),
         m_turn(Piece::WHITE),
         m_handler(handler),
         m_checkEnPassant(true)
 {
-    m_field[0][7] = rb1;
-    m_field[7][7] = rb2;
-    m_field[0][0] = rl1;
-    m_field[7][0] = rl2;
+    // Create Pieces.
+    m_field[0][7] = rook_b1;
+    m_field[7][7] = rook_b2;
+    m_field[0][0] = rook_w1;
+    m_field[7][0] = rook_w2;
 
-    m_field[1][7] = nb1;
-    m_field[6][7] = nb2;
-    m_field[1][0] = nl1;
-    m_field[6][0] = nl2;
+    m_field[1][7] = Knight_b1;
+    m_field[6][7] = Knight_b2;
+    m_field[1][0] = Knight_w1;
+    m_field[6][0] = Knight_w2;
 
-    m_field[2][7] = bb1;
-    m_field[5][7] = bb2;
-    m_field[2][0] = bl1;
-    m_field[5][0] = bl2;
+    m_field[2][7] = Bishop_b1;
+    m_field[5][7] = Bishop_b2;
+    m_field[2][0] = Bishop_w1;
+    m_field[5][0] = Bishop_w2;
 
-    m_field[3][7] = kb1;
-    m_field[3][0] = kl1;
+    m_field[3][7] = King_b1;
+    m_field[3][0] = King_w1;
 
-    m_field[4][7] = qb1;
-    m_field[4][0] = ql1;
+    m_field[4][7] = queen_b1;
+    m_field[4][0] = queen_w1;
 
-    m_field[0][1] = pl1;
-    m_field[1][1] = pl2;
-    m_field[2][1] = pl3;
-    m_field[3][1] = pl4;
-    m_field[4][1] = pl5;
-    m_field[5][1] = pl6;
-    m_field[6][1] = pl7;
-    m_field[7][1] = pl8;
+    m_field[0][1] = pawn_w1;
+    m_field[1][1] = pawn_w2;
+    m_field[2][1] = pawn_w3;
+    m_field[3][1] = pawn_w4;
+    m_field[4][1] = pawn_w5;
+    m_field[5][1] = pawn_w6;
+    m_field[6][1] = pawn_w7;
+    m_field[7][1] = pawn_w8;
 
-    m_field[0][6] = pb1;
-    m_field[1][6] = pb2;
-    m_field[2][6] = pb3;
-    m_field[3][6] = pb4;
-    m_field[4][6] = pb5;
-    m_field[5][6] = pb6;
-    m_field[6][6] = pb7;
-    m_field[7][6] = pb8;
+    m_field[0][6] = pawn_b1;
+    m_field[1][6] = pawn_b2;
+    m_field[2][6] = pawn_b3;
+    m_field[3][6] = pawn_b4;
+    m_field[4][6] = pawn_b5;
+    m_field[5][6] = pawn_b6;
+    m_field[6][6] = pawn_b7;
+    m_field[7][6] = pawn_b8;
 
     for (int i = 2; i < 6; i++)
     {
@@ -87,7 +88,6 @@ Game::Game(sdl_handler* handler)
 
     calcAllMoves();
 }
- 
 
 Game::~Game()
 {
@@ -196,19 +196,19 @@ void Game::enPassant(int xStart, int yStart, int xEnd, int yEnd)
 
 void Game::exchange(int xStart, int yStart, int xEnd, int yEnd)
 {
-    SDL_Texture* text_rook = m_handler->loadImage("res/Chess_rlt60.png");
-    SDL_Texture* text_knight = m_handler->loadImage("res/Chess_nlt60.png");
-    SDL_Texture* text_bishop = m_handler->loadImage("res/Chess_blt60.png");
-    SDL_Texture* text_queen = m_handler->loadImage("res/Chess_qlt60.png");
+    SDL_Texture* text_rook = m_handler->loadImage("img/Chess_rlt60.png");
+    SDL_Texture* text_knight = m_handler->loadImage("img/Chess_nlt60.png");
+    SDL_Texture* text_bishop = m_handler->loadImage("img/Chess_blt60.png");
+    SDL_Texture* text_queen = m_handler->loadImage("img/Chess_qlt60.png");
     int y_draw = 0;
     Piece::Team team = Piece::WHITE;
 
     if (m_field[xStart][yStart]->getTeam() == Piece::BLACK)
     {
-        text_rook = m_handler->loadImage("res/Chess_rdt60.png");
-        text_knight = m_handler->loadImage("res/Chess_ndt60.png");
-        text_bishop = m_handler->loadImage("res/Chess_bdt60.png");
-        text_queen = m_handler->loadImage("res/Chess_qdt60.png");
+        text_rook = m_handler->loadImage("img/Chess_rdt60.png");
+        text_knight = m_handler->loadImage("img/Chess_ndt60.png");
+        text_bishop = m_handler->loadImage("img/Chess_bdt60.png");
+        text_queen = m_handler->loadImage("img/Chess_qdt60.png");
         y_draw = 3 * m_handler->SCREEN_HEIGHT / 4;
         team = Piece::BLACK;
     }
@@ -351,14 +351,14 @@ void Game::gameState()
 {
     bool lost = true;
     std::string message;
-    King* pivot = kb1;
+    King* pivot = King_b1;
 
     if (m_turn == Piece::BLACK)
     {
-        pivot = kl1;
+        pivot = King_w1;
     }
 
-    pivot->setCheck(m_field, kl1->getPos().first, kl1->getPos().second);
+    pivot->setCheck(m_field, King_w1->getPos().first, King_w1->getPos().second);
     for (int i = 0; i < m_handler->PIECE_NUMBER; i++)
     {
         for (int j = 0; j < m_handler->PIECE_NUMBER; j++)
@@ -477,6 +477,7 @@ void Game::undoRenderPossibleMoves(Piece* piece)
     for (const Piece::PossibleMove& value : possible) {
         if ((value.xCoord % 2 == 0 && value.yCoord % 2 == 1) || (value.xCoord % 2 == 1 && value.yCoord % 2 == 0))
         {
+            //SDL_SetRenderDrawColor(m_handler->m_renderer, 155, 103, 60, 255);
             // Green Color.
             SDL_SetRenderDrawColor(m_handler->m_renderer, 0, 255, 0, 255);
         }
@@ -505,13 +506,19 @@ void Game::undoRenderPossibleMoves(Piece* piece)
 
 void Game::calcAllMoves()
 {
+    std::cout << " siwar New Move" << std::endl;
     for (int i = 0; i <m_handler->PIECE_NUMBER; i++)
     {
         for (int j = 0; j < m_handler->PIECE_NUMBER; j++)
         {
-            if (m_field[i][j] != nullptr)
+            if (m_field[i][j] != NULL)
             {
                 m_field[i][j]->calcPossibleMoves(m_field, true);
+                std::cout << " Pointer for piece is not null" << std::endl;
+            }
+            else
+            {
+                std::cout << "Piece null pointer" << std::endl;
             }
         }
     }

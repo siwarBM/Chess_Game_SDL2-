@@ -6,10 +6,10 @@
 Pawn::Pawn(Team team, std::pair<int, int> pos, sdl_handler* handler)
 	:Piece(team, pos, handler, PAWN), m_enPassant(std::pair<bool, int>(false, 0))
 {
-	std::string filename;
-	filename = (team == BLACK) ? "res/Chess_pdt60.png" : "res/Chess_plt60.png";
+	std::string imagename;
+	imagename = (team == BLACK) ? "img/Chess_pdt60.png" : "img/Chess_plt60.png";
 	m_handler = handler;
-	m_texture = handler->loadImage(filename);
+	m_texture = handler->loadImage(imagename);
 
 	m_dy = (team == BLACK) ? -1 : 1;
 

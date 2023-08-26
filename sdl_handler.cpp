@@ -34,15 +34,15 @@ void sdl_handler::renderBackground()
 	}
 }
 
-SDL_Texture* sdl_handler::loadImage(std::string filename)
+SDL_Texture* sdl_handler::loadImage(std::string imagename)
 {
 	SDL_Surface* loadedImage = NULL;
 
-	loadedImage = IMG_Load(filename.c_str());
+	loadedImage = IMG_Load(imagename.c_str());
 
 	if (loadedImage == NULL)
 	{
-		std::cout << "couldnt load " << filename << std::endl;
+		std::cout << "could'nt load Image" << imagename << std::endl;
 	}
 
 	SDL_Texture* text = SDL_CreateTextureFromSurface(m_renderer, loadedImage);
@@ -91,8 +91,6 @@ void sdl_handler::DrawRectangle(SDL_Rect source, SDL_Rect dest, SDL_Texture* tex
 		std::cout << "DrawRectangle: text was nullptr" << std::endl;
 	}
 }
-
-
 
 sdl_handler::~sdl_handler()
 {

@@ -4,9 +4,9 @@
 Rook::Rook(Team team, std::pair<int, int> pos, sdl_handler* handler)
 	:Piece(team, pos, handler, ROOK)
 {
-	std::string filename = (team == BLACK) ? "res/Chess_rdt60.png" : "res/Chess_rlt60.png";
+	std::string imagename = (team == BLACK) ? "img/Chess_rdt60.png" : "img/Chess_rlt60.png";
 	m_handler = handler;
-	m_texture = handler->loadImage(filename);
+	m_texture = handler->loadImage(imagename);
 
 	render();
 }

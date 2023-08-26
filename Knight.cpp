@@ -4,10 +4,10 @@
 Knight::Knight(Team team, std::pair<int, int> pos, sdl_handler* handler)
 	:Piece(team, pos, handler, KNIGHT)
 {
-	std::string filename;
-	filename = (team == BLACK) ? "res/Chess_ndt60.png" : "res/Chess_nlt60.png";
+	std::string imagename;
+	imagename = (team == BLACK) ? "img/Chess_ndt60.png" : "img/Chess_nlt60.png";
 	m_handler = handler;
-	m_texture = handler->loadImage(filename);
+	m_texture = handler->loadImage(imagename);
 	render();
 }
 

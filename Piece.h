@@ -13,11 +13,11 @@ class King;
 class Piece
 {
 public:
-    enum Team { BLACK, WHITE, NONE };
+    enum Team { NONE=0, BLACK, WHITE };
 
-	enum PieceType { PAWN, ROOK, KNIGHT, BISHOP, KING, QUEEN, EMPTY };
+	enum PieceType {EMPTY=0, PAWN, ROOK, KNIGHT, BISHOP, KING, QUEEN };
 
-	enum MoveType { NORMAL, CASTLE, ENPASSANT, NEWPIECE, INIT };
+	enum MoveType { INIT=0, NORMAL, CASTLE, ENPASSANT, NEWPIECE };
     
 	struct PossibleMove
     {
@@ -48,9 +48,6 @@ public:
 
 	//render this piece
 	void render();
-
-	// prints name of piece
-	virtual void sayMyName();
 
 	// calculates every possible Move this piece can do
 	virtual void calcPossibleMoves(Piece* field[8][8], bool checkCheck) = 0;
